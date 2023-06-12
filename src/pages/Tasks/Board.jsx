@@ -1,8 +1,8 @@
-import React, {useState} from 'react';
-import {BoardColumn, BoardContainer, BoardGrid, BoardHeader, BoardTasks} from "./Board.styled.jsx";
-import {BoardTask} from "./components/BoardTask.jsx";
-import {tasks} from "../../stubs/index.js";
-import {EmployeesHeader, HeaderLink} from "./Board.styled.jsx";
+import React, { useState } from 'react';
+import { BoardColumn, BoardContainer, BoardGrid, BoardHeader, BoardTasks } from "./Board.styled.jsx";
+import { BoardTask } from "./components/BoardTask.jsx";
+import { tasks } from "../../stubs/index.js";
+import { EmployeesHeader, HeaderLink } from "./Board.styled.jsx";
 
 const splitDataToColumns = (arr) => {
   const output = {}
@@ -21,8 +21,8 @@ export const Board = () => {
 
   return (
     <BoardContainer>
+      <h1>Проект</h1>
       <EmployeesHeader>
-        <h1>Проект</h1>
         <HeaderLink to="/edit-board">Создать задачу</HeaderLink>
       </EmployeesHeader>
       <BoardGrid columns={columns}>
