@@ -10,6 +10,8 @@ import ru.nikitina.taskmanager.model.Project;
 import ru.nikitina.taskmanager.service.ProjectService;
 import ru.nikitina.taskmanager.service.TaskService;
 
+import java.util.List;
+
 
 @RestController
 @RequestMapping("/project")
@@ -30,9 +32,13 @@ public class ProjectController {
         Project project = modelMapper.map(projectDTO, Project.class);
         return new ResponseEntity<>(projectService.save(project), HttpStatus.CREATED);
     }
-    @PostMapping
+    @PostMapping("/clients")
     public ResponseEntity<Project> addClientToProject(@RequestParam("projectId") Long projectId,
                                                       @RequestParam("clientId") Long clientId){
         return new ResponseEntity<>(projectService.addClientToProject(projectId, clientId), HttpStatus.OK);
+    }
+    @GetMapping
+    public ResponseEntity<List<Project>> getAll(){
+        return new ResponseEntity<>(projectService.getAll(), HttpStatus.OK);
     }
 }

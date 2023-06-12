@@ -29,4 +29,8 @@ public class ProjectService {
         project.setClients(clients);
         return project;
     }
+
+    public List<Project> getAll(){
+        return projectRepository.findAll();
+    }
 }
