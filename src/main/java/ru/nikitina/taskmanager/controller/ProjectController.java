@@ -15,17 +15,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/project")
+@CrossOrigin
 public class ProjectController {
     @Autowired
     private ProjectService projectService;
     @Autowired
     private TaskService taskService;
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<List<Project>> getTaskFromProject(@PathVariable("id") Long id){
-//        taskService
-//        return new ResponseEntity<>( , HttpStatus.OK);
-//    }
     @PostMapping
     public ResponseEntity<Project> createProject(@RequestBody ProjectDTO projectDTO){
         ModelMapper modelMapper = new ModelMapper();

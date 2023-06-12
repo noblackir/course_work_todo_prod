@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/difficulty")
+@CrossOrigin
 public class DifficultyController {
     @Autowired
     private DifficultyService difficultyService;

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import ru.nikitina.taskmanager.model.Client;
+import ru.nikitina.taskmanager.model.Roles;
 import ru.nikitina.taskmanager.repository.ClientRepository;
 import ru.nikitina.taskmanager.repository.RolesRepository;
 
@@ -23,18 +24,16 @@ public class ClientService {
             return clientRepository.findById(id).get();
         else return null;
     }
-//    public Client save(Client client) throws UserAlreadyExistException {
-//        if (clientRepository.findByName(client.getName()).isPresent())
-//            throw new UserAlreadyExistException("name is exist already");
-//        else{
-//            client.setPassword(passwordEncoder.encode(client.getPassword()));
-//            WishList wishList = new WishList(null, client, new LinkedList<>());
-//            client.setWishList(wishList);
-//            Roles role = rolesRepository.findByTitle("ROLE_USER");
-//            client.setRole(role);
-//            return clientRepository.save(client);
-//        }
-//    }
+    public Client save(Client client) {
+        if (clientRepository.findByName(client.getName()).isPresent())
+            throw new RuntimeException();
+        else{
+            client.setPassword(passwordEncoder.encode(client.getPassword()));
+            Roles role = rolesRepository.findByTitle("ROLE_USER");
+            client.setRole(role);
+            return clientRepository.save(client);
+        }
+    }
 //    public Client update(Client oldClient, Client newClient){
 //        if (newClient.getEmail() != null)
 //            oldClient.setEmail(newClient.getEmail());
