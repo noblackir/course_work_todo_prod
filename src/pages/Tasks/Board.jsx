@@ -22,6 +22,7 @@ export const Board = () => {
   return (
     <BoardContainer>
       <EmployeesHeader>
+        <h1>Проект</h1>
         <HeaderLink to="/edit-board">Создать задачу</HeaderLink>
       </EmployeesHeader>
       <BoardGrid columns={columns}>
