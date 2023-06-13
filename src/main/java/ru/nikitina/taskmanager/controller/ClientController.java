@@ -12,7 +12,7 @@ import ru.nikitina.taskmanager.service.ClientService;
 
 @RestController
 @RequestMapping("/client")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class ClientController {
     @Autowired
     private ClientService clientService;

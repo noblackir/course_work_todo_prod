@@ -18,7 +18,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/task")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class TaskController {
     @Autowired
     private TaskService taskService;

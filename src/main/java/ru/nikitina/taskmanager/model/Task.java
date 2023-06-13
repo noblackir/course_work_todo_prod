@@ -1,5 +1,6 @@
 package ru.nikitina.taskmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -30,9 +31,11 @@ public class Task {
     private Difficulty difficulty;
     @Column(name = "start_date")
     @NotNull(message = "Not empty!")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date startDate;
     @Column(name = "finish_date")
     @NotNull(message = "Not empty!")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date finishDate;
     @ManyToOne
     @JoinColumn(name = "state_id")

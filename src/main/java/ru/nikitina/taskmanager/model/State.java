@@ -19,7 +19,7 @@ public class State {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @NotNull(message = "Not empty!")
+    @NotNull(message = "title is empty")
     @Column(name = "title")
     private String title;
     @JsonIgnore

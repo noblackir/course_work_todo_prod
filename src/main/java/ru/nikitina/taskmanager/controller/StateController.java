@@ -12,13 +12,13 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/state")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class StateController {
     @Autowired
     private StateService stateService;
 
     @PostMapping
-    public ResponseEntity<State> save(State state){
+    public ResponseEntity<State> save(@RequestBody State state){
         return new ResponseEntity<>(stateService.save(state), HttpStatus.CREATED);
     }
     @GetMapping

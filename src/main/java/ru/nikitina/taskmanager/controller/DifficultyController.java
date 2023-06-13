@@ -11,12 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/difficulty")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000")
 public class DifficultyController {
     @Autowired
     private DifficultyService difficultyService;
     @PostMapping
-    public ResponseEntity<Difficulty> save(Difficulty difficulty){
+    public ResponseEntity<Difficulty> save(@RequestBody Difficulty difficulty){
         return new ResponseEntity<>(difficultyService.save(difficulty), HttpStatus.CREATED);
     }
     @GetMapping

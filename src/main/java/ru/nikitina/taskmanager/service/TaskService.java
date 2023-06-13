@@ -3,10 +3,9 @@ package ru.nikitina.taskmanager.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ru.nikitina.taskmanager.model.*;
-import ru.nikitina.taskmanager.repository.ProjectRepository;
-import ru.nikitina.taskmanager.repository.StateRepository;
-import ru.nikitina.taskmanager.repository.TaskRepository;
+import ru.nikitina.taskmanager.repository.*;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @Service
@@ -16,17 +15,29 @@ public class TaskService {
     @Autowired
     private ProjectRepository projectRepository;
     @Autowired
+    private RolesRepository rolesRepository;
+    @Autowired
+    private DifficultyRepository difficultyRepository;
+    @Autowired
     private StateRepository stateRepository;
-    public Task save(Project project,
-                     Task task,
-                     Difficulty difficulty,
-                     State state,
-                     List<Client> clients){
-        task.setProject(project);
-        task.setDifficulty(difficulty);
-        task.setState(state);
-        task.setClients(clients);
-        return task;
+    @Autowired
+    private ClientRepository clientRepository;
+    public Task save(Project project, Task task, Difficulty difficulty, State state, List<Client> clients){
+        Project newProject = projectRepository.findById(project.getId()).get();
+        Difficulty newDifficulty = difficultyRepository.findById(difficulty.getId()).get();
+        State newState = stateRepository.findById(state.getId()).get();
+        Client newClient = clientRepository.findById(clients.get(0).getId()).get();
+
+        task.setProject(newProject);
+        task.setDifficulty(newDifficulty);
+        task.setState(newState);
+
+        List<Client> newClientList = new LinkedList<>();
+        newClientList.add(newClient);
+
+        task.setClients(newClientList);
+
+        return taskRepository.save(task);
     }
     public Task changeStatus(Long taskId, State state){
         Task task = taskRepository.findById(taskId).get();
