@@ -42,7 +42,7 @@ public class TaskService {
     public Task changeStatus(Long taskId, State state){
         Task task = taskRepository.findById(taskId).get();
         task.setState(state);
-        return task;
+        return taskRepository.save(task);
     }
     public List<Task> getAllTasks(Long projectId, String stateName){
         Project project = projectRepository.findById(projectId).get();

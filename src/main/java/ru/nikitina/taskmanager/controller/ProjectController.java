@@ -2,6 +2,8 @@ package ru.nikitina.taskmanager.controller;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +36,14 @@ public class ProjectController {
         return new ResponseEntity<>(projectService.addClientToProject(projectId, clientId), HttpStatus.OK);
     }
     @GetMapping
-    public ResponseEntity<List<Project>> getAll(){
-        return new ResponseEntity<>(projectService.getAll(), HttpStatus.OK);
+    @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "x-total-count")
+    public ResponseEntity<List<Project>> getAll(@RequestParam(required = false, defaultValue = "0") int page,
+                                                @RequestParam(required = false, defaultValue = "10") int size){
+        List<Project> projects = projectService.getAll(PageRequest.of(page, size));
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("x-total-count", ((Integer)projects.size()).toString());
+        return new ResponseEntity<>(projects, responseHeaders, HttpStatus.OK);
     }
+
+
 }

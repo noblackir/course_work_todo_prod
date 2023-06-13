@@ -1,6 +1,8 @@
 package ru.nikitina.taskmanager.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.nikitina.taskmanager.model.Client;
 import ru.nikitina.taskmanager.model.Project;
@@ -30,7 +32,8 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public List<Project> getAll(){
-        return projectRepository.findAll();
+    public List<Project> getAll(PageRequest pageRequest){
+        Page<Project> page = projectRepository.findAll(pageRequest);
+        return page.getContent();
     }
 }

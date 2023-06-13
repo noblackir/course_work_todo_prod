@@ -9,8 +9,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import ru.nikitina.taskmanager.dto.ClientDTO;
 import ru.nikitina.taskmanager.model.Client;
-import ru.nikitina.taskmanager.model.Roles;
-import ru.nikitina.taskmanager.repository.ClientRepository;
 import ru.nikitina.taskmanager.service.ClientService;
 
 @RestController
