@@ -43,6 +43,8 @@ public class ProjectController {
         responseHeaders.set("x-total-count", projectService.count().toString());
         return new ResponseEntity<>(projectService.getAll(PageRequest.of(page, size)), responseHeaders, HttpStatus.OK);
     }
-
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Project> getById(@PathVariable("id") Long id){
+        return new ResponseEntity<>(projectService.getById(id), HttpStatus.OK);
+    }
 }

@@ -18,7 +18,6 @@ public class ProjectService {
     private ProjectRepository projectRepository;
     @Autowired
     private ClientRepository clientRepository;
-    //public List<Project> getAllProject();
     public Project save(Project project){
         return projectRepository.save(project);
     }
@@ -39,5 +38,8 @@ public class ProjectService {
 
     public Integer count(){
         return projectRepository.findAll().size();
+    }
+    public Project getById(Long id){
+        return projectRepository.findById(id).get();
     }
 }
