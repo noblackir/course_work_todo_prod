@@ -27,7 +27,7 @@ public class ProjectService {
         List<Client> clients = project.getClients();
         clients.add(client);
         project.setClients(clients);
-        return project;
+        return projectRepository.save(project);
     }
 
     public List<Project> getAll(){

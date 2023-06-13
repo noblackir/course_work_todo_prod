@@ -1,6 +1,7 @@
 package ru.nikitina.taskmanager.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -37,12 +38,15 @@ public class Task {
     @NotNull(message = "Not empty!")
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm")
     private Date finishDate;
+    @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "state_id")
     private State state;
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "project_id")
     private Project project;
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "task_client",
             joinColumns = @JoinColumn(name = "task_id"),

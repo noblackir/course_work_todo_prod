@@ -53,9 +53,9 @@ public class ClientService {
 //    public void deleteById(Long id){
 //        clientRepository.deleteById(id);
 //    }
-//    public Client findByName(String name) throws UserNotFoundException {
-//        if(clientRepository.findByName(name).isPresent())
-//            return clientRepository.findByName(name).get();
-//        else throw new UserNotFoundException("user not found :(");
-//    }
+    public Client findByName(String name){
+        if(clientRepository.findByName(name).isPresent())
+            return clientRepository.findByName(name).get();
+        else throw new RuntimeException();
+    }
 }

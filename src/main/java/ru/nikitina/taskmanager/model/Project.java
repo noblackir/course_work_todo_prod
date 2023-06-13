@@ -1,5 +1,6 @@
 package ru.nikitina.taskmanager.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,10 @@ public class Project {
     @Column(name = "description", columnDefinition="TEXT")
     @NotNull(message = "Not empty!")
     private String description;
+    @JsonIgnore
     @OneToMany(mappedBy = "project")
     private List<Task> tasks;
+    @JsonIgnore
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "project_client",
             joinColumns = @JoinColumn(name = "project_id"),

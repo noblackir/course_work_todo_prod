@@ -42,11 +42,11 @@ public class Client {
     @JsonIgnore
     @JoinColumn(name = "role_id")
     private Roles role;
-    @ManyToMany(mappedBy = "clients")
     @JsonIgnore
+    @ManyToMany(mappedBy = "clients")
     private List<Task> tasks;
-    @ManyToMany(mappedBy = "clients")
     @JsonIgnore
+    @ManyToMany(mappedBy = "clients")
     private List<Project> projects;
 
     public Roles getRole(){
