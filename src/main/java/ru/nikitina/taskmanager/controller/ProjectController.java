@@ -39,10 +39,9 @@ public class ProjectController {
     @CrossOrigin(origins = "http://localhost:3000", exposedHeaders = "x-total-count")
     public ResponseEntity<List<Project>> getAll(@RequestParam(required = false, defaultValue = "0") int page,
                                                 @RequestParam(required = false, defaultValue = "10") int size){
-        List<Project> projects = projectService.getAll(PageRequest.of(page, size));
         HttpHeaders responseHeaders = new HttpHeaders();
-        responseHeaders.set("x-total-count", ((Integer)projects.size()).toString());
-        return new ResponseEntity<>(projects, responseHeaders, HttpStatus.OK);
+        responseHeaders.set("x-total-count", projectService.count().toString());
+        return new ResponseEntity<>(projectService.getAll(PageRequest.of(page, size)), responseHeaders, HttpStatus.OK);
     }
 
 

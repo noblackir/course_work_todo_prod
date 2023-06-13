@@ -36,4 +36,8 @@ public class ProjectService {
         Page<Project> page = projectRepository.findAll(pageRequest);
         return page.getContent();
     }
+
+    public Integer count(){
+        return projectRepository.findAll().size();
+    }
 }
