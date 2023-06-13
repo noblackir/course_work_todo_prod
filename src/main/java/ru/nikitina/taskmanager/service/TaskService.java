@@ -25,7 +25,7 @@ public class TaskService {
     public Task save(Project project, Task task, Difficulty difficulty, State state, List<Client> clients){
         Project newProject = projectRepository.findById(project.getId()).get();
         Difficulty newDifficulty = difficultyRepository.findById(difficulty.getId()).get();
-        State newState = stateRepository.findById(state.getId()).get();
+        State newState = stateRepository.findById(1L).get();
         Client newClient = clientRepository.findById(clients.get(0).getId()).get();
 
         task.setProject(newProject);
