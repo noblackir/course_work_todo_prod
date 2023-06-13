@@ -31,6 +31,6 @@ public class ClientController {
         authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(clientDTO.getName(), clientDTO.getPassword()));
         Client client = clientService.findByName(clientDTO.getName());
         ClientDTO returnClientDTO = modelMapper.map(client, ClientDTO.class);
-        return new ResponseEntity<>(returnClientDTO, HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(returnClientDTO, HttpStatus.OK);
     }
 }
